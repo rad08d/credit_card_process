@@ -1,0 +1,49 @@
+Author: Alan Dinneen
+Date: 12/6/15
+Name: CCProcessing
+
+########## DEPENDANCES ##########
+Python 2.7 Installed
+Non-original libraries used are all core Python libraries. They are as follows:
+    1) unittest
+    2) fileinput
+    3) re
+
+
+########## RUN INSTRUCTIONS ##########
+To run the core application from command line:
+    1) cd credit_card_processing
+    2) python2.7 runapp.py < input.txt
+
+To run all of the unit tests from command line:
+    1) cd credit_card_processing
+    2) python2.7 -m unittest discover
+
+
+########## OVERVIEW ##########
+Python was picked as the language for this application because it is my most
+frequently used language and the one I am most comfortable in. 
+Python 2.7 was picked as it is installed by default on a lot of modern systems.
+All libraries used or built where picked for the application's ease of use.
+Using core Python libraries or custom packages makes it so that a virtual environment
+and other requirements are not necessary.This makes the script very easy to run 
+out of the box.  
+
+When designing the ccacc package, more specifically the account module, I made a
+few key decisions. First I made the initialization parameters non optional. I did 
+this because I do not see that there should ever be an account without a name,
+credit card number, or credit limit. Credit card numbers are validated at initialization
+to avoid having to process the card number every time a transaction occurs. Any account
+with an invalid credit card number can not successfully complete any transaction methods.
+Since this credit card validation is a core design principle and Python doesn't have private variables,
+a property decorator was added to the credit card number variable in the Account class. This was done so that 
+if the credit card number needs to be updated, it will still go through the validation method even after the account object
+has been created. The credit limit variable inside the Account class exposes the same functionality as the credit
+card number described above.
+
+Seperating the Account module into its own package was done in order to help with future development.
+Since the application is seperated out into distinct packages, it is easy to add any new modules to the
+ccacc package or entire new pacakges to the application. 
+
+I've included two unit tests. test_runapp tests all the methods in the main application. 
+test_ccacc tests all the Account class methods and thier possible outcomes.     
