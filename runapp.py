@@ -23,11 +23,10 @@ def process_input(input, accdict):
     :return an updated accdict:
     """
     accinfo = input.split()
-    acc = None
-    for key, val in accdict.iteritems():
-        if key == accinfo[1]:
-            acc = val
-            break
+    if accinfo[1] in accdict:
+        acc = accdict[accinfo[1]]
+    else:
+        acc = None
     if not acc and accinfo[0] == 'Add':
         acc = Account(accname=accinfo[1], ccnum=accinfo[2], cclimit=accinfo[3])
     if acc and accinfo[0] == 'Charge':
