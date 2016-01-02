@@ -12,7 +12,7 @@ def main():
     fileinput.close()
     alphasort = sorted([k for k in accdict.iterkeys()])
     for name in alphasort:
-        print accdict[name].name + ':', '$' + str(accdict[name].accbalance) if accdict[name].ccnum != 'error' else accdict[name].ccnum
+        print accdict[name].name + ':', '$' + str(accdict[name].balance) if accdict[name].ccnum else "error"
 
 
 def process_input(input, accdict):
