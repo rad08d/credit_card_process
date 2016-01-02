@@ -10,9 +10,7 @@ def main():
     for line in fileinput.input():
         process_input(line, accdict)
     fileinput.close()
-    alphasort = sorted([k for k in accdict.iterkeys()])
-    for name in alphasort:
-        print accdict[name].name + ':', '$' + str(accdict[name].balance) if accdict[name].ccnum else "error"
+    sort_print_accounts(accdict)
 
 
 def process_input(input, accdict):
@@ -36,6 +34,11 @@ def process_input(input, accdict):
     accdict[acc.name] = acc
     return accdict
 
+
+def sort_print_accounts(accdict):
+    alphasort = sorted([k for k in accdict.iterkeys()])
+    for name in alphasort:
+        print accdict[name].name + ':', '$' + str(accdict[name].balance) if accdict[name].ccnum else "error"
 
 if __name__ == '__main__':
     main()

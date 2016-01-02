@@ -10,26 +10,21 @@ class Account(object):
         self._cclimit = self._cln_amt(cclimit)
         self.balance = 0
 
-
     @property
     def ccnum(self):
         return self._ccnum
-
 
     @ccnum.setter
     def ccnum(self, ccnum):
         self._ccnum = self._ver_cc_num(ccnum)
 
-
     @property
     def cclimit(self):
         return self._cclimit
 
-
     @cclimit.setter
     def cclimit(self, cclimit):
         self._cclimit = self._cln_amt(cclimit)
-
 
     def charge_acc(self, chrgamt):
         """
@@ -47,7 +42,6 @@ class Account(object):
         else:
             return False
 
-
     def credit_acc(self, crdamt):
         """
         This method is meant to credit an account with a valid credit card number
@@ -60,7 +54,6 @@ class Account(object):
             return True
         else:
             return False
-
 
     def _ver_cc_num(self, ccnum):
         """
@@ -78,7 +71,6 @@ class Account(object):
             return int(ccnum)
         else:
             return False
-
 
     def _cln_amt(self, amt):
         """
