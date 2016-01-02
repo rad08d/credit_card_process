@@ -4,11 +4,11 @@ import re
 
 class Account(object):
 
-    def __init__(self, accname, ccnum, cclimit):
-        self.accname = accname
+    def __init__(self, name, ccnum, cclimit):
+        self.name = name
         self._ccnum = self._ver_cc_num(ccnum)
         self._cclimit = self._cln_amt(cclimit)
-        self.accbalance = 0
+        self.balance = 0
 
 
     @property
@@ -37,10 +37,10 @@ class Account(object):
         :param chrgamt: is an integer that is used to place a charge value on the account:
         :return True if the charge was successfully added. False if it was declined:
         """
-        if self.ccnum != 'error':
+        if self.ccnum:
             chrgamt = self._cln_amt(chrgamt)
-            if self.accbalance + chrgamt <= self.cclimit:
-                self.accbalance += chrgamt
+            if self.balance + chrgamt <= self.cclimit:
+                self.balance += chrgamt
                 return True
             else:
                 return False
@@ -54,9 +54,9 @@ class Account(object):
         :param crdamt: is an integer that is used to place a credit value on the account:
         :return True if a credit was successfully added. False if it was declined:
         """
-        if self.ccnum != 'error':
+        if self.ccnum:
             crdamt = self._cln_amt(crdamt)
-            self.accbalance -= crdamt
+            self.balance -= crdamt
             return True
         else:
             return False
@@ -77,7 +77,7 @@ class Account(object):
         if check % 10 == 0:
             return int(ccnum)
         else:
-            return 'error'
+            return False
 
 
     def _cln_amt(self, amt):

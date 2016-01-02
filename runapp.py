@@ -10,9 +10,9 @@ def main():
     for line in fileinput.input():
         process_input(line, accdict)
     fileinput.close()
-    aplhasort = sorted([k for k in accdict.iterkeys()])
-    for name in aplhasort:
-        print accdict[name].accname + ':', '$' + str(accdict[name].accbalance) if accdict[name].ccnum != 'error' else accdict[name].ccnum
+    alphasort = sorted([k for k in accdict.iterkeys()])
+    for name in alphasort:
+        print accdict[name].name + ':', '$' + str(accdict[name].accbalance) if accdict[name].ccnum != 'error' else accdict[name].ccnum
 
 
 def process_input(input, accdict):
@@ -28,12 +28,12 @@ def process_input(input, accdict):
     else:
         acc = None
     if not acc and accinfo[0] == 'Add':
-        acc = Account(accname=accinfo[1], ccnum=accinfo[2], cclimit=accinfo[3])
+        acc = Account(name=accinfo[1], ccnum=accinfo[2], cclimit=accinfo[3])
     if acc and accinfo[0] == 'Charge':
         acc.charge_acc(accinfo[2])
     if acc and accinfo[0] == 'Credit':
         acc.credit_acc(accinfo[2])
-    accdict[acc.accname] = acc
+    accdict[acc.name] = acc
     return accdict
 
 
